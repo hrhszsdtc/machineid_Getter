@@ -1,2 +1,3 @@
 # machineid_Getter
-A straightforward tool for obtaining the distinctive machine identification number of any computer.
+
+一个获取任何电脑唯一机器ID的程序
