@@ -114,6 +114,14 @@ string get_machine_id()
         if (machine_id.empty() && strstr(buf.release, "microsoft"))
         {
             machine_id = exec("powershell.exe -ExecutionPolicy bypass -command (Get-CimInstance -Class Win32_ComputerSystemProduct).UUID");
+            if (machine_id.empty())
+            {
+                machine_id = exec("wmic csproduct get uuid");
+                if (!machine_id.empty())
+                {
+                    machine_id = machine_id.substr(4);
+                }
+            }
         }
     }
     else if (strcmp(buf.sysname, "FreeBSD") == 0 || strcmp(buf.sysname, "OpenBSD") == 0)
